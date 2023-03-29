@@ -1,0 +1,34 @@
+[tool.poetry]
+name = "shapemaker"
+version = "0.1.0"
+description = "Geospatial geometry storage and retrieval"
+authors = ["Brian McGowan <brian@nextdaylost.com>"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/brian-mcgowan/shapemaker"
+repository = "https://github.com/brian-mcgowan/shapemaker"
+documentation = "https://github.com/brian-mcgowan/shapemaker"
+
+[tool.poetry.urls]
+"Bug Tracker" = "https://github.com/brian-mcgowan/shapemaker/issues"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.1.0"
+flake8 = "^6.0.0"
+flake8-docstrings = "^1.7.0"
+pre-commit = "^3.2.1"
+pytest = "^7.2.2"
+pytest-cov = "^4.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.coverage.report]
+fail_under = 100
+
+[tool.coverage.run]
+source = ["src"]
