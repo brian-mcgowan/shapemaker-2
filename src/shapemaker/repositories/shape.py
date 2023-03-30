@@ -43,14 +43,14 @@ class ShapeRepository:
         session.delete(shape_orm)
 
     @staticmethod
-    def _get_by_id(session: Session, resource_id: uuid.UUID) -> ShapeORM:
+    def _get_by_id(session: Session, resource_id: uuid.UUID) -> Type[ShapeORM]:
         """Retrieves a `ShapeORM` resource from the database."""
         shape_orm = (
             session.query(ShapeORM).filter(ShapeORM.id == str(resource_id)).first()
         )
         if not shape_orm:
             raise ShapeNotFoundError(resource_id)
-        return Type[shape_orm]
+        return shape_orm
 
     def create(self, shape_dto: ShapeCreateDTO) -> Shape:
         """Creates a `Shape` resource in the database."""
@@ -81,10 +81,10 @@ class ShapeRepository:
     def replace_by_id(self, resource_id: uuid.UUID, resource: ShapeCreateDTO) -> None:
         """Replaces a `Shape` resource in the database."""
         with self.session_factory() as session:
-            self._delete_by_id(session, resource_id)
-            shape_orm = self._create_resource(session, resource)
+            shape_orig = self._get_by_id(session, resource_id)
+            for k, v in resource.dict().items():
+                setattr(shape_orig, k, v)
             session.commit()
-            session.refresh(shape_orm)
 
     def update_by_id(self, resource_id: uuid.UUID, resource: ShapeUpdateDTO) -> None:
         """Partially updates a `Shape` resource in the database."""

@@ -11,6 +11,10 @@ from shapemaker.services.shape import ShapeService
 class ApplicationContainer(containers.DeclarativeContainer):
     """Application dependency injection container."""
 
+    wiring_config = containers.WiringConfiguration(
+        modules=["shapemaker.endpoints.shapes"]
+    )
+
     config = providers.Configuration()
 
     database = providers.Singleton(
