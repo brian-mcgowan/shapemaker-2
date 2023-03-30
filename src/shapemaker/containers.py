@@ -4,6 +4,7 @@
 from dependency_injector import containers, providers
 
 from shapemaker.database import Database
+from shapemaker.repositories.shape import ShapeRepository
 
 
 class ApplicationContainer(containers.DeclarativeContainer):
@@ -15,4 +16,9 @@ class ApplicationContainer(containers.DeclarativeContainer):
         Database,
         dsn=config.database.dsn,
         echo=False if config.production else True,
+    )
+
+    shape_repository = providers.Factory(
+        ShapeRepository,
+        session_factory=database.provided.session,
     )

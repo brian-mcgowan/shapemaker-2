@@ -1,0 +1,1 @@
+"""Data persistence abstraction resources."""
