@@ -1,5 +1,5 @@
 [flake8]
 docstring-convention = google
-exclude = .git,__pycache__,dist,tests
+exclude = .git,__pycache__,alembic,dist,tests
 extend-ignore = E203
 max-line-length = 88

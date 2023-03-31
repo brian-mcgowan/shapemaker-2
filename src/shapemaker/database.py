@@ -29,7 +29,7 @@ class Database:
     def create_database(self) -> None:
         """Creates required database resources.
 
-        Not intended for use in production.
+        Not intended for use in production. Use migration scripts instead.
         """
         BaseORM.metadata.create_all(self._engine)
 

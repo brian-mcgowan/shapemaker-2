@@ -2,6 +2,28 @@
 
 Geospatial geometry storage and retrieval
 
+## Usage
+
+### Set Up the Database
+
+Install 
+
+```shell
+poetry install --with migration
+```
+
+Apply migrations:
+
+```shell
+poetry run alembic upgrade head
+```
+
+### Launch the service
+
+```shell
+
+```
+
 ## Development
 
 Install development dependencies:
